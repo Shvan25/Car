@@ -1,10 +1,4 @@
 ﻿using System;
-enum TurnDirection
-{
-    None = 0,
-    Left,
-    Right
-}
 
 class Car
 {
@@ -12,15 +6,12 @@ class Car
 
     private int Mileage;
 
-    private string color;
-
-    private TurnDirection turn;
-
+    
     public Car()
     {
         Fuel = 50;
         Mileage = 0;
-        color = "White";
+        
     }
 
     private void Move()
@@ -30,45 +21,24 @@ class Car
         Fuel -= 0.5;
     }
 
-    private void Turn(TurnDirection direction)
-    {
-        turn = direction;
-    }
-
     public void FillTheCar()
     {
         Fuel = 50;
     }
-
-    public string GetColor()
-    {
-        return color;
-    }
-
-    public void ChangeColor(string newColor)
-    {
-        if (color != newColor)
-            color = newColor;
-    }
-
-    public bool IsTurningLeft()
-    {
-        return turn == TurnDirection.Left;
-    }
-
-    public bool IsTurningRight()
-    {
-        return turn == TurnDirection.Right;
-    }
+      
 }
-class TrafficLight()
+enum FuelType
 {
-    private void ChangeColor(string color)
-    {
+    Gas = 0,
+    Electricity
+}
 
-    }
-    public void GetColor()
-    {
+class HybridCar : Car
+{
+    public FuelType FuelType;
 
+    public void ChangeFuelType(FuelType type)
+    {
+        FuelType = type;
     }
 }
