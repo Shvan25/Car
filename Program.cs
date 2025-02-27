@@ -1,44 +1,67 @@
 ﻿using System;
 
-class Car
+using System;
+
+    class Car
 {
-    private double Fuel;
-
-    private int Mileage;
-
-    
+    public int Mileage;
     public Car()
     {
-        Fuel = 50;
         Mileage = 0;
-        
     }
-
-    private void Move()
+    public virtual void Move()
     {
-        // Move a kilometer
+        Console.WriteLine("Вызван метод Move класса Car");
         Mileage++;
-        Fuel -= 0.5;
     }
-
-    public void FillTheCar()
-    {
-        Fuel = 50;
-    }
-      
 }
 enum FuelType
 {
     Gas = 0,
     Electricity
 }
-
 class HybridCar : Car
 {
     public FuelType FuelType;
 
+    public double Gas;
+
+    public double Electricity;
+
+    public HybridCar()
+    {
+        Electricity = 50;
+        Gas = 50;
+    }
+    public override void Move()
+    {
+        Console.WriteLine("Вызван метод Move класса HybridCar");
+        Mileage++;
+
+        switch (FuelType)
+        {
+            case FuelType.Gas:
+                Gas -= 0.5;
+                break;
+            case FuelType.Electricity:
+                Electricity -= 0.5; break;
+        }
+    }
     public void ChangeFuelType(FuelType type)
     {
         FuelType = type;
+    }
+}
+class Programm
+{
+
+    public static void Main(string[] args)
+    {
+        Car car = new Car();
+        HybridCar hybridcar = new HybridCar();
+
+        car.Move();
+        hybridcar.Move();
+        ((Car)hybridcar).Move();
     }
 }
